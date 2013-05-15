@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.turnitin.sdk</groupId>
     <artifactId>turnitin-sdk</artifactId>
-    <version>1.0</version>
+    <version>0.1.142</version>
 
     <dependencies>
         <dependency>

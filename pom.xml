@@ -7,10 +7,6 @@
     <groupId>org.sakaiproject.contentreview</groupId>
     <artifactId>turnitin</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>turnitin-sdk</module>
-        <module>turnitin-content-review</module>
-    </modules>
 </project>

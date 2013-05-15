@@ -9,16 +9,91 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <name>Sakai - Turnitin Content Review</name>
+    <description>Content review tool using Turnitin to examine documents.</description>
+    <url>https://www.github.com/ColinHebert/Sakai-Turnitin</url>
+    <inceptionYear>2013</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>ColinHebert</id>
+            <name>Colin Hebert</name>
+            <email>colin.hebert@it.ox.ac.uk</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/ColinHebert/Sakai-Turnitin</url>
+        <connection>scm:git:git://github.com/ColinHebert/Sakai-Turnitin.git</connection>
+        <developerConnection>scm:git:git@github.com:ColinHebert/Sakai-Turnitin.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/ColinHebert/Sakai-Turnitin/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis-CI</system>
+        <url>https://travis-ci.org/ColinHebert/Sakai-Turnitin</url>
+    </ciManagement>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- maven-compiler-plugin config -->
+        <maven.compiler.source>6</maven.compiler.source>
+        <maven.compiler.target>6</maven.compiler.target>
+
+        <!-- dependencies versions -->
+        <turnitin-sdk.version>0.1.142</turnitin-sdk.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.turnitin.sdk</groupId>
             <artifactId>turnitin-sdk</artifactId>
-            <version>0.1.142</version>
+            <version>${turnitin-sdk.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
+                <version>1.9</version>
+                <configuration>
+                    <signature>
+                        <groupId>org.codehaus.mojo.signature</groupId>
+                        <artifactId>java16</artifactId>
+                        <version>1.1</version>
+                    </signature>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-compatibility</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.14.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -42,6 +117,7 @@
         </plugins>
     </build>
 
+    <!-- Local repository forcing the manual setup of the Turnitin SDK -->
     <repositories>
         <repository>
             <id>local-repo</id>

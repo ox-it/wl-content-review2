@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.sakaiproject.contentreview</groupId>
-    <artifactId>turnitin</artifactId>
+    <groupId>org.sakaiproject.contentreview2</groupId>
+    <artifactId>base</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>Sakai - Turnitin Content Review</name>
+    <name>Sakai - Content Review 2</name>
     <description>Content review tool using Turnitin to examine documents.</description>
-    <url>https://www.github.com/ColinHebert/Sakai-Turnitin</url>
+    <url>https://www.github.com/ColinHebert/Sakai-ContentReview2</url>
     <inceptionYear>2013</inceptionYear>
 
     <developers>
@@ -22,21 +20,24 @@
         </developer>
     </developers>
 
+    <modules>
+        <module>turnitin</module>
+    </modules>
+
     <scm>
-        <url>https://github.com/ColinHebert/Sakai-Turnitin</url>
-        <connection>scm:git:git://github.com/ColinHebert/Sakai-Turnitin.git</connection>
-        <developerConnection>scm:git:git@github.com:ColinHebert/Sakai-Turnitin.git</developerConnection>
+        <url>https://github.com/ColinHebert/Sakai-ContentReview2</url>
+        <connection>scm:git:git://github.com/ColinHebert/Sakai-ContentReview2.git</connection>
+        <developerConnection>scm:git:git@github.com:ColinHebert/Sakai-ContentReview2.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
-        <url>https://github.com/ColinHebert/Sakai-Turnitin/issues</url>
+        <url>https://github.com/ColinHebert/Sakai-ContentReview2/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
     <ciManagement>
         <system>Travis-CI</system>
-        <url>https://travis-ci.org/ColinHebert/Sakai-Turnitin</url>
+        <url>https://travis-ci.org/ColinHebert/Sakai-ContentReview2</url>
     </ciManagement>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,13 +51,15 @@
         <turnitin-sdk.version>0.1.142</turnitin-sdk.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.turnitin.sdk</groupId>
-            <artifactId>turnitin-sdk</artifactId>
-            <version>${turnitin-sdk.version}</version>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.turnitin.sdk</groupId>
+                <artifactId>turnitin-sdk</artifactId>
+                <version>${turnitin-sdk.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -94,34 +97,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <include>
-                                    <exclude>com.turnitin.sdk:turnitin-sdk</exclude>
-                                </include>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-
-    <!-- Local repository forcing the manual setup of the Turnitin SDK -->
-    <repositories>
-        <repository>
-            <id>local-repo</id>
-            <url>file://${basedir}/repo</url>
-        </repository>
-    </repositories>
 </project>

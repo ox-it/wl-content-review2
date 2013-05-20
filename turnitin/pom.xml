@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sakaiproject.contentreview2</groupId>
+        <artifactId>base</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>turnitin</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Sakai - Turnitin Content Review</name>
+    <description>Content review tool using Turnitin to examine documents.</description>
+
+    <properties>
+        <turnitin-sdk.version>0.1.142</turnitin-sdk.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.turnitin.sdk</groupId>
+            <artifactId>turnitin-sdk</artifactId>
+            <version>${turnitin-sdk.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <include>
+                                    <exclude>com.turnitin.sdk:turnitin-sdk</exclude>
+                                </include>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Local repository forcing the manual setup of the Turnitin SDK -->
+    <repositories>
+        <repository>
+            <id>local-repo</id>
+            <url>file://${basedir}/repo</url>
+        </repository>
+    </repositories>
+</project>

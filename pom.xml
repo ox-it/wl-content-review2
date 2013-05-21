@@ -24,6 +24,7 @@
         <module>api</module>
         <module>default</module>
         <module>turnitin</module>
+        <module>compatibility</module>
     </modules>
 
     <scm>

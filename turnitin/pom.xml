@@ -19,6 +19,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.turnitin.sdk</groupId>
             <artifactId>turnitin-sdk</artifactId>
             <version>${turnitin-sdk.version}</version>

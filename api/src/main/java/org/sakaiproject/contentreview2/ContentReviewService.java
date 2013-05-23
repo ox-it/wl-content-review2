@@ -47,4 +47,20 @@ public interface ContentReviewService {
      */
     //TODO: Change the exception?
     void startReview(Review review) throws IllegalArgumentException;
+
+    /**
+     * Returns {@code true} if the site can use the content review service.
+     *
+     * @param siteId identifier of the site which will use content review.
+     * @return true if the site can use the content review service, false otherwise.
+     */
+    boolean isSiteSupported(String siteId);
+
+    /**
+     * Returns {@code true} if the file is supported by the content review system.
+     *
+     * @param contentId identifier of the file which will be sent to the content review system.
+     * @return true if the file can be analysed through the content review service, false otherwise.
+     */
+    boolean isFileSupported(String contentId);
 }

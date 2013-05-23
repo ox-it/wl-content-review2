@@ -31,6 +31,14 @@ public class Review {
      * </p>
      */
     private final String userId;
+    /**
+     * Unique identifier of the site in which the submission was made.
+     * <p>
+     * The siteId isn't mandatory but could be used by the review system to identify the class in which the submission
+     * has been made.
+     * </p>
+     */
+    private final String siteId;
 
     /**
      * Creates a review for the given submission.
@@ -38,11 +46,13 @@ public class Review {
      * @param submissionId identifier of the submission.
      * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
      * @param userId       identifier of the user who sent the submission (can be null).
+     * @param siteId       identifier of the site in which the assignment is (can be null).
      */
-    public Review(String submissionId, String assignmentId, String userId) {
+    public Review(String submissionId, String assignmentId, String userId, String siteId) {
         this.submissionId = submissionId;
         this.assignmentId = assignmentId;
         this.userId = userId;
+        this.siteId = siteId;
     }
 
     /**
@@ -50,10 +60,11 @@ public class Review {
      *
      * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
      * @param userId       identifier of the user who sent the submission (can be null).
-     * @see #Review(String, String, String)
+     * @param siteId       identifier of the site in which the assignment is (can be null).
+     * @see #Review(String, String, String, String)
      */
-    public Review(String assignmentId, String userId) {
-        this(UUID.randomUUID().toString(), assignmentId, userId);
+    public Review(String assignmentId, String userId, String siteId) {
+        this(UUID.randomUUID().toString(), assignmentId, userId, siteId);
     }
 
     public String getSubmissionId() {
@@ -66,5 +77,9 @@ public class Review {
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getSiteId() {
+        return siteId;
     }
 }

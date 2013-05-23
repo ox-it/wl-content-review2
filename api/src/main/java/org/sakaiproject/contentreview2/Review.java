@@ -10,26 +10,46 @@ public class Review {
      * Unique identifier of the submission, can also be used as the unique identifier of the review.
      */
     private final String submissionId;
+    /**
+     * Unique identifier of the assignment to which the submission is linked.
+     * <p>
+     * The assignment Id can be used by the review system to group reviews and making them accessible.<br />
+     * It is possible to have a null value for the assignment Id.
+     * </p>
+     * <p>
+     * As the assignment id is provided by the code calling the content review service, and multiple tools might call
+     * the review service, it is recommended to ensure the uniqueness of the assignment id by either adding the name
+     * of the calling tool, or using a {@link UUID}.
+     * </p>
+     */
+    private final String assignmentId;
 
     /**
      * Creates a review for the given submission.
      *
      * @param submissionId identifier of the submission.
+     * @param assignmentId identifier of the assignment to which the submission is linked.
      */
-    public Review(String submissionId) {
+    public Review(String submissionId, String assignmentId) {
         this.submissionId = submissionId;
+        this.assignmentId = assignmentId;
     }
 
     /**
      * Creates a review and generates its submission id.
      *
-     * @see #Review(String)
+     * @param assignmentId identifier of the assignment to which the submission is linked.
+     * @see #Review(String, String)
      */
-    public Review() {
-        this(UUID.randomUUID().toString());
+    public Review(String assignmentId) {
+        this(UUID.randomUUID().toString(), assignmentId);
     }
 
     public String getSubmissionId() {
         return submissionId;
+    }
+
+    public String getAssignmentId() {
+        return assignmentId;
     }
 }

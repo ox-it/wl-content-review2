@@ -23,26 +23,37 @@ public class Review {
      * </p>
      */
     private final String assignmentId;
+    /**
+     * Unique identifier of the user who sent the submission.
+     * <p>
+     * The userId isn't mandatory but could be used by the review system to identify the work of a specific user
+     * when the review is being made.
+     * </p>
+     */
+    private final String userId;
 
     /**
      * Creates a review for the given submission.
      *
      * @param submissionId identifier of the submission.
-     * @param assignmentId identifier of the assignment to which the submission is linked.
+     * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
+     * @param userId       identifier of the user who sent the submission (can be null).
      */
-    public Review(String submissionId, String assignmentId) {
+    public Review(String submissionId, String assignmentId, String userId) {
         this.submissionId = submissionId;
         this.assignmentId = assignmentId;
+        this.userId = userId;
     }
 
     /**
      * Creates a review and generates its submission id.
      *
-     * @param assignmentId identifier of the assignment to which the submission is linked.
-     * @see #Review(String, String)
+     * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
+     * @param userId       identifier of the user who sent the submission (can be null).
+     * @see #Review(String, String, String)
      */
-    public Review(String assignmentId) {
-        this(UUID.randomUUID().toString(), assignmentId);
+    public Review(String assignmentId, String userId) {
+        this(UUID.randomUUID().toString(), assignmentId, userId);
     }
 
     public String getSubmissionId() {
@@ -51,5 +62,9 @@ public class Review {
 
     public String getAssignmentId() {
         return assignmentId;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

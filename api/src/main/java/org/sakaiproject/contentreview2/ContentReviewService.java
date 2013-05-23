@@ -63,4 +63,11 @@ public interface ContentReviewService {
      * @return true if the file can be analysed through the content review service, false otherwise.
      */
     boolean isFileSupported(String contentId);
+
+    /**
+     * Returns {@code true} if it is possible to resubmit documents for a review.
+     *
+     * @return true if resubmissions are supported, false otherwise.
+     */
+    boolean isResubmissionSupported();
 }

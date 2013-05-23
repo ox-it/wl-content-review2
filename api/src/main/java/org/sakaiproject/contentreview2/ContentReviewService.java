@@ -38,4 +38,13 @@ public interface ContentReviewService {
      * @return reviews for that assignment.
      */
     Collection<Review> getReviewsForAssignment(String assignmentId);
+
+    /**
+     * Starts the review process (creates the review).
+     *
+     * @param review to start.
+     * @throws IllegalArgumentException if a review with the same id already exists.
+     */
+    //TODO: Change the exception?
+    void startReview(Review review) throws IllegalArgumentException;
 }

@@ -1,5 +1,8 @@
 package org.sakaiproject.contentreview2;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -39,6 +42,10 @@ public class Review {
      * </p>
      */
     private final String siteId;
+    /**
+     * Identifier of the files sent in the submission.
+     */
+    private final Set<String> filesId;
 
     /**
      * Creates a review for the given submission.
@@ -47,12 +54,14 @@ public class Review {
      * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
      * @param userId       identifier of the user who sent the submission (can be null).
      * @param siteId       identifier of the site in which the assignment is (can be null).
+     * @param filesId      identifiers of the files sent in the submission.
      */
-    public Review(String submissionId, String assignmentId, String userId, String siteId) {
+    public Review(String submissionId, String assignmentId, String userId, String siteId, Set<String> filesId) {
         this.submissionId = submissionId;
         this.assignmentId = assignmentId;
         this.userId = userId;
         this.siteId = siteId;
+        this.filesId = Collections.unmodifiableSet(new HashSet<String>(filesId));
     }
 
     /**
@@ -61,10 +70,11 @@ public class Review {
      * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
      * @param userId       identifier of the user who sent the submission (can be null).
      * @param siteId       identifier of the site in which the assignment is (can be null).
-     * @see #Review(String, String, String, String)
+     * @param filesId      identifiers of the files sent in the submission.
+     * @see #Review(String, String, String, String, java.util.Set
      */
-    public Review(String assignmentId, String userId, String siteId) {
-        this(UUID.randomUUID().toString(), assignmentId, userId, siteId);
+    public Review(String assignmentId, String userId, String siteId, Set<String> filesId) {
+        this(UUID.randomUUID().toString(), assignmentId, userId, siteId, filesId);
     }
 
     public String getSubmissionId() {
@@ -81,5 +91,9 @@ public class Review {
 
     public String getSiteId() {
         return siteId;
+    }
+
+    public Set<String> getFilesId() {
+        return filesId;
     }
 }

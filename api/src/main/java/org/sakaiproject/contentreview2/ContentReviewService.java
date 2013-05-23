@@ -30,4 +30,12 @@ public interface ContentReviewService {
      * @return reviews mapped by submission id.
      */
     Map<String, Review> getReviewsById(Collection<String> submissionIds);
+
+    /**
+     * Retrieves the reviews for a given assignment.
+     *
+     * @param assignmentId identifier of the assignment to which the review is attached.
+     * @return reviews for that assignment.
+     */
+    Collection<Review> getReviewsForAssignment(String assignmentId);
 }

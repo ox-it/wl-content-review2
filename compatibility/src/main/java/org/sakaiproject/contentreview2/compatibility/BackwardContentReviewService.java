@@ -1,5 +1,6 @@
 package org.sakaiproject.contentreview2.compatibility;
 
+import org.sakaiproject.content.api.ContentResource;
 import org.sakaiproject.contentreview.exception.QueueException;
 import org.sakaiproject.contentreview.exception.ReportException;
 import org.sakaiproject.contentreview.exception.SubmissionException;
@@ -8,6 +9,7 @@ import org.sakaiproject.contentreview.model.ContentReviewItem;
 import org.sakaiproject.contentreview.service.ContentReviewService;
 import org.sakaiproject.contentreview2.Review;
 import org.sakaiproject.contentreview2.ReviewService;
+import org.sakaiproject.site.api.Site;
 
 import java.util.*;
 
@@ -108,12 +110,12 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public boolean isAcceptableContent(org.sakaiproject.content.api.ContentResource contentResource) {
+    public boolean isAcceptableContent(ContentResource contentResource) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public boolean isSiteAcceptable(org.sakaiproject.site.api.Site site) {
+    public boolean isSiteAcceptable(Site site) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

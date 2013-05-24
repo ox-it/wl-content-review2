@@ -6,20 +6,21 @@ import org.sakaiproject.contentreview.exception.SubmissionException;
 import org.sakaiproject.contentreview.exception.TransientSubmissionException;
 import org.sakaiproject.contentreview.model.ContentReviewItem;
 import org.sakaiproject.contentreview.service.ContentReviewService;
+import org.sakaiproject.contentreview2.Review;
+import org.sakaiproject.contentreview2.ReviewService;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Implementation of the previous ContentReview API which delegates calls to the new API.
  */
 public class BackwardContentReviewService implements ContentReviewService {
+    private ReviewService reviewService;
 
     @Override
     public void queueContent(String userId, String siteId, String taskId, String contentId) throws QueueException {
-        //To change body of implemented methods use File | Settings | File Templates.
+        Review review = new Review(contentId, taskId, userId, siteId, Collections.singleton(contentId));
+        reviewService.startReview(review);
     }
 
     @Override

@@ -46,6 +46,13 @@ public class Review {
      * Identifier of the files sent in the submission.
      */
     private final Set<String> filesId;
+    /**
+     * Score of the review.
+     * <p>
+     *     The score of a review has to be between 0 and 100.
+     * </p>
+     */
+    private int score;
 
     /**
      * Creates a review for the given submission.
@@ -95,5 +102,13 @@ public class Review {
 
     public Set<String> getFilesId() {
         return filesId;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

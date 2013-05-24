@@ -111,7 +111,7 @@ public class BackwardContentReviewService implements ContentReviewService {
 
     @Override
     public boolean isAcceptableContent(ContentResource contentResource) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return reviewService.isFileSupported(contentResource.getId());
     }
 
     @Override

@@ -17,10 +17,10 @@ import java.util.*;
  * Implementation of the previous ContentReview API which delegates calls to the new API.
  */
 public class BackwardContentReviewService implements ContentReviewService {
-    public static final long STATUS_QUEUED = 1L;
-    public static final long STATUS_SUBMITTED = 2L;
-    public static final long STATUS_RETRIEVED = 3L;
-    public static final long STATUS_FAILED = 8L;
+    private static final long STATUS_QUEUED = 1L;
+    private static final long STATUS_SUBMITTED = 2L;
+    private static final long STATUS_RETRIEVED = 3L;
+    private static final long STATUS_FAILED = 8L;
     private ReviewService reviewService;
 
     @Override

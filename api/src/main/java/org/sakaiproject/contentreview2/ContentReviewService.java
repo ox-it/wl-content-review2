@@ -49,6 +49,30 @@ public interface ContentReviewService {
     void startReview(Review review) throws IllegalArgumentException;
 
     /**
+     * Sends a message to the review system.
+     * <p>
+     * Some review systems (such as Turnitin) need additional operations before being usable
+     * (an assignment may have to be created manually for example), this method allows to directly send an order from
+     * the tool using the content review service to the review system.
+     * </p>
+     * <p>
+     * It is a design flaw (such a method shouldn't exist) but is helpful with tools that are currently
+     * (Sakai 2.10) available and rely on a content review system.<br />
+     * A more conventional behaviour would be having the tool using the content review service to do the calls to the
+     * review system directly (through another service specific to the review system).
+     * </p>
+     * <p>
+     * For all intents and purposes this method should <b>NEVER</b> be used.
+     * </p>
+     *
+     * @param parameters parameters to send to the review system.
+     * @return an Object that can be null.
+     * @deprecated
+     */
+    @Deprecated
+    Object executeOnReviewSystem(Map<String, Object> parameters);
+
+    /**
      * Returns {@code true} if the site can use the content review service.
      *
      * @param siteId identifier of the site which will use content review.

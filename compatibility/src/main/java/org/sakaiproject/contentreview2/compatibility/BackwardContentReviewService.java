@@ -24,8 +24,8 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public int getReviewScore(String s) throws QueueException, ReportException, Exception {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    public int getReviewScore(String contentId) throws Exception {
+        return reviewService.getReview(contentId).getScore();
     }
 
     @Override

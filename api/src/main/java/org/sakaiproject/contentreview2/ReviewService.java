@@ -11,7 +11,7 @@ import java.util.Map;
  * Usually the score is based on plagiarism detection, but other detections can be applied.
  * </p>
  */
-public interface ContentReviewService {
+public interface ReviewService {
     /**
      * Retrieves a review based on a submission id.
      *

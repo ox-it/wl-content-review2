@@ -23,6 +23,25 @@ public class BackwardContentReviewService implements ContentReviewService {
     private static final long STATUS_FAILED = 8L;
     private ReviewService reviewService;
 
+    private static List<ContentReviewItem> convertReviews(Collection<Review> reviews) {
+        List<ContentReviewItem> contentReviewItems = new ArrayList<ContentReviewItem>(reviews.size());
+
+        for (Review review : reviews) {
+            contentReviewItems.add(convertReview(review));
+        }
+
+        return Collections.unmodifiableList(contentReviewItems);
+    }
+
+    private static ContentReviewItem convertReview(Review review) {
+        ContentReviewItem contentReviewItem = new ContentReviewItem();
+        contentReviewItem.setContentId(review.getSubmissionId());
+        contentReviewItem.setUserId(review.getUserId());
+        contentReviewItem.setTaskId(review.getAssignmentId());
+        contentReviewItem.setReviewScore(review.getScore());
+        return contentReviewItem;
+    }
+
     @Override
     public void queueContent(String userId, String siteId, String taskId, String contentId) throws QueueException {
         Review review = new Review(contentId, taskId, userId, siteId, Collections.singleton(contentId));

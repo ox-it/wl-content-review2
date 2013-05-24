@@ -15,6 +15,10 @@ import java.util.*;
  * Implementation of the previous ContentReview API which delegates calls to the new API.
  */
 public class BackwardContentReviewService implements ContentReviewService {
+    public static final long STATUS_QUEUED = 1L;
+    public static final long STATUS_SUBMITTED = 2L;
+    public static final long STATUS_RETRIEVED = 3L;
+    public static final long STATUS_FAILED = 8L;
     private ReviewService reviewService;
 
     @Override
@@ -44,8 +48,18 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public Long getReviewStatus(String s) throws QueueException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Long getReviewStatus(String contentId) throws QueueException {
+        switch (reviewService.getReview(contentId).getStatus()) {
+            case QUEUED:
+                return STATUS_QUEUED;
+            case SUBMITTED:
+                return STATUS_SUBMITTED;
+            case RETRIEVED:
+                return STATUS_RETRIEVED;
+            case FAILED:
+            default:
+                return STATUS_FAILED;
+        }
     }
 
     @Override

@@ -162,7 +162,9 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public void createAssignment(String s, String s2, Map map) throws SubmissionException, TransientSubmissionException {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void createAssignment(String s, String s2, Map map)
+            throws SubmissionException, TransientSubmissionException {
+        //TODO: rely on reviewService.executeOnReviewSystem();
+        throw new UnsupportedOperationException();
     }
 }

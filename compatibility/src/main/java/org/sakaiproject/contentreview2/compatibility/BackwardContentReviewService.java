@@ -126,7 +126,7 @@ public class BackwardContentReviewService implements ContentReviewService {
 
     @Override
     public boolean allowResubmission() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return reviewService.isResubmissionSupported();
     }
 
     @Override

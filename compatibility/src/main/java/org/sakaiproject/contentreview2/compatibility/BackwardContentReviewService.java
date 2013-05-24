@@ -155,8 +155,10 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public Map getAssignment(String s, String s2) throws SubmissionException, TransientSubmissionException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Map<Object, Object> getAssignment(String siteId, String taskId)
+            throws SubmissionException, TransientSubmissionException {
+        //TODO: rely on reviewService.executeOnReviewSystem();
+        throw new UnsupportedOperationException();
     }
 
     @Override

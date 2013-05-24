@@ -49,7 +49,7 @@ public class Review {
     /**
      * Score of the review.
      * <p>
-     *     The score of a review has to be between 0 and 100.
+     * The score of a review has to be between 0 and 100.
      * </p>
      */
     private int score;

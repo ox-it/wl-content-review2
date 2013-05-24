@@ -53,6 +53,10 @@ public class Review {
      * </p>
      */
     private int score;
+    /**
+     * Status of the review.
+     */
+    private Status status;
 
     /**
      * Creates a review for the given submission.
@@ -110,5 +114,35 @@ public class Review {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    /**
+     * Status of a review.
+     */
+    public static enum Status {
+        /**
+         * The review has been created but hasn't been sent to the review system yet.
+         */
+        QUEUED,
+        /**
+         * The review has been sent to the review system.
+         */
+        SUBMITTED,
+        /**
+         * The review report has come back.
+         */
+        RETRIEVED,
+        /**
+         * Something went wrong within the review system. More details can be provided by the implementation.
+         */
+        FAILED
     }
 }

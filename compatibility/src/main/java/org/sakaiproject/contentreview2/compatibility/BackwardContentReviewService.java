@@ -53,9 +53,18 @@ public class BackwardContentReviewService implements ContentReviewService {
         return reviewService.getReview(contentId).getScore();
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated use {@link #getReviewReportInstructor(String)} or {@link #getReviewReportStudent(String)} instead.
+     */
+    @Deprecated
     @Override
-    public String getReviewReport(String s) throws QueueException, ReportException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public String getReviewReport(String contentId) throws QueueException, ReportException {
+        throw new UnsupportedOperationException("Deprecated method that should be replaced.");
     }
 
     @Override

@@ -13,7 +13,7 @@
     <description>Compatibility with the previous version of content review</description>
 
     <properties>
-        <contentreview-api.version>2.10-SNAPSHOT</contentreview-api.version>
+        <contentreview-api.version>2.9.1</contentreview-api.version>
         <sakai-kernel.version>1.4.0-SNAPSHOT</sakai-kernel.version>
     </properties>
 

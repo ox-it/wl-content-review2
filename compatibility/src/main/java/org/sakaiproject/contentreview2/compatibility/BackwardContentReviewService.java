@@ -247,11 +247,6 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public String getReviewError(String s) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public String getLocalizedStatusMessage(String s, Locale locale) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

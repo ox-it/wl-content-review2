@@ -222,9 +222,18 @@ public class BackwardContentReviewService implements ContentReviewService {
         return reviewService.isResubmissionSupported();
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There shouldn't be any reason to call this method.
+     */
+    @Deprecated
     @Override
-    public void removeFromQueue(String s) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void removeFromQueue(String contentId) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -106,9 +106,18 @@ public class BackwardContentReviewService implements ContentReviewService {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There is no reason to rely on this method, there shouldn't be a notion of external submission.
+     */
+    @Deprecated
     @Override
-    public Date getDateSubmitted(String s) throws QueueException, SubmissionException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Date getDateSubmitted(String contextId) throws QueueException, SubmissionException {
+        throw new UnsupportedOperationException();
     }
 
     @Override

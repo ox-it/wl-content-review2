@@ -68,12 +68,12 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public String getReviewReportStudent(String s) throws QueueException, ReportException {
+    public String getReviewReportStudent(String contentId) throws QueueException, ReportException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public String getReviewReportInstructor(String s) throws QueueException, ReportException {
+    public String getReviewReportInstructor(String contentId) throws QueueException, ReportException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -213,7 +213,7 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public String getIconUrlforScore(Long aLong) {
+    public String getIconUrlforScore(Long score) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -237,17 +237,17 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public String getLocalizedStatusMessage(String s, String s2) {
+    public String getLocalizedStatusMessage(String messageCode, String userRef) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public String getLocalizedStatusMessage(String s) {
+    public String getLocalizedStatusMessage(String messageCode) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public String getLocalizedStatusMessage(String s, Locale locale) {
+    public String getLocalizedStatusMessage(String messageCode, Locale locale) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -259,7 +259,7 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public void createAssignment(String s, String s2, Map map)
+    public void createAssignment(String siteId, String taskId, Map extraAssnOpts)
             throws SubmissionException, TransientSubmissionException {
         //TODO: rely on reviewService.executeOnReviewSystem();
         throw new UnsupportedOperationException();

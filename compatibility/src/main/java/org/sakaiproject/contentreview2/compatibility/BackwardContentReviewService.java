@@ -114,9 +114,20 @@ public class BackwardContentReviewService implements ContentReviewService {
         return convertReviews(reviewsForAssignment);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There shouldn't be any reason to get reports by site.
+     *             Instead use {@link #getReportList(String, String)}.
+     */
+    @Deprecated
     @Override
-    public List<ContentReviewItem> getReportList(String s) throws QueueException, SubmissionException, ReportException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<ContentReviewItem> getReportList(String siteId)
+            throws QueueException, SubmissionException, ReportException {
+        throw new UnsupportedOperationException();
     }
 
     @Override

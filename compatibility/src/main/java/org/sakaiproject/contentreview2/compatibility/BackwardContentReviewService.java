@@ -213,4 +213,8 @@ public class BackwardContentReviewService implements ContentReviewService {
         //TODO: rely on reviewService.executeOnReviewSystem();
         throw new UnsupportedOperationException();
     }
+
+    public void setReviewService(ReviewService reviewService) {
+        this.reviewService = reviewService;
+    }
 }

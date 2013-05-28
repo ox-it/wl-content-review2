@@ -188,9 +188,18 @@ public class BackwardContentReviewService implements ContentReviewService {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There shouldn't be any reason to call this method.
+     */
+    @Deprecated
     @Override
-    public void resetUserDetailsLockedItems(String s) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void resetUserDetailsLockedItems(String userId) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

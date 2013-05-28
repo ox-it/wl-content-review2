@@ -209,7 +209,7 @@ public class BackwardContentReviewService implements ContentReviewService {
 
     @Override
     public boolean isSiteAcceptable(Site site) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return reviewService.isSiteSupported(site.getId());
     }
 
     @Override

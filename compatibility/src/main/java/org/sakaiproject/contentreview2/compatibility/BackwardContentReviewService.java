@@ -120,9 +120,19 @@ public class BackwardContentReviewService implements ContentReviewService {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There is no reason to call that externally. The queuing system is specific to the implementation.
+     *             If a job (cron) needs to be run, it should be created/provided by the implementation.
+     */
+    @Deprecated
     @Override
     public void processQueue() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -140,8 +140,9 @@ public class BackwardContentReviewService implements ContentReviewService {
     }
 
     @Override
-    public List<ContentReviewItem> getAllContentReviewItems(String s, String s2) throws QueueException, SubmissionException, ReportException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<ContentReviewItem> getAllContentReviewItems(String siteId, String taskId)
+            throws QueueException, SubmissionException, ReportException {
+        return convertReviews(reviewService.getReviewsForAssignment(taskId));
     }
 
     @Override

@@ -106,7 +106,12 @@ public class BackwardContentReviewService implements ContentReviewService {
     @Override
     public List<ContentReviewItem> getReportList(String siteId, String taskId)
             throws QueueException, SubmissionException, ReportException {
-        return convertReviews(reviewService.getReviewsForAssignment(taskId));
+        Collection<Review> reviewsForAssignment = new LinkedList<Review>();
+        for (Review review : reviewService.getReviewsForAssignment(taskId)) {
+            if (review.getStatus().equals(Review.Status.RETRIEVED))
+                reviewsForAssignment.add(review);
+        }
+        return convertReviews(reviewsForAssignment);
     }
 
     @Override

@@ -92,9 +92,18 @@ public class BackwardContentReviewService implements ContentReviewService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There is no reason to rely on this method, there shouldn't be a notion of queuing system externally.
+     */
+    @Deprecated
     @Override
-    public Date getDateQueued(String s) throws QueueException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Date getDateQueued(String contextId) throws QueueException {
+        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -49,6 +49,9 @@
         <!-- maven-compiler-plugin config -->
         <maven.compiler.source>6</maven.compiler.source>
         <maven.compiler.target>6</maven.compiler.target>
+
+        <sakai-kernel.version>1.4.0-SNAPSHOT</sakai-kernel.version>
+        <slf4j.version>1.7.5</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +65,21 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>default</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>turnitin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.sakaiproject.kernel</groupId>
+                <artifactId>sakai-kernel-api</artifactId>
+                <version>${sakai-kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

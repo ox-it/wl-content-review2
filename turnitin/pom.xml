@@ -23,6 +23,15 @@
             <artifactId>api</artifactId>
         </dependency>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>default</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.sakaiproject.kernel</groupId>
+            <artifactId>sakai-kernel-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.turnitin.sdk</groupId>
             <artifactId>turnitin-sdk</artifactId>
             <version>${turnitin-sdk.version}</version>

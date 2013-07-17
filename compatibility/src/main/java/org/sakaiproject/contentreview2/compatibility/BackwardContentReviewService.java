@@ -7,6 +7,8 @@ import org.sakaiproject.contentreview.exception.SubmissionException;
 import org.sakaiproject.contentreview.exception.TransientSubmissionException;
 import org.sakaiproject.contentreview.model.ContentReviewItem;
 import org.sakaiproject.contentreview.service.ContentReviewService;
+import org.sakaiproject.contentreview.turnitin.TurnitinReviewSystem;
+import org.sakaiproject.contentreview.turnitin.report.ReportDao;
 import org.sakaiproject.contentreview2.Review;
 import org.sakaiproject.contentreview2.ReviewService;
 import org.sakaiproject.site.api.Site;
@@ -15,6 +17,13 @@ import java.util.*;
 
 /**
  * Implementation of the previous ContentReview API which delegates calls to the new API.
+ * <p>
+ * As the previous API is really tied to the TII implementation, this implementation is quite tied to the TII
+ * implementation of ContentReview2.<br />
+ * Due to the previous ContentReview system, only one document can be submitted per review, multiple submissions are
+ * handled by creating multiple reviews for the same user within the same assignment.
+ * TODO: To enfore the previous rule, add a way for reviewDAO to create multiple submissions for a unique user.
+ * </p>
  */
 public class BackwardContentReviewService implements ContentReviewService {
     private static final long STATUS_QUEUED = 1L;
@@ -22,6 +31,7 @@ public class BackwardContentReviewService implements ContentReviewService {
     private static final long STATUS_RETRIEVED = 3L;
     private static final long STATUS_FAILED = 8L;
     private ReviewService reviewService;
+    private ReportDao tiiReportDao;
 
     private static List<ContentReviewItem> convertReviews(Collection<Review> reviews) {
         List<ContentReviewItem> contentReviewItems = new ArrayList<ContentReviewItem>(reviews.size());
@@ -44,7 +54,8 @@ public class BackwardContentReviewService implements ContentReviewService {
 
     @Override
     public void queueContent(String userId, String siteId, String taskId, String contentId) throws QueueException {
-        Review review = new Review(contentId, taskId, userId, siteId, Collections.singleton(contentId));
+        Review review = new Review(contentId, taskId, userId, siteId,
+                Collections.singleton(new Review.ReviewItem(contentId)));
         reviewService.startReview(review);
     }
 
@@ -69,12 +80,12 @@ public class BackwardContentReviewService implements ContentReviewService {
 
     @Override
     public String getReviewReportStudent(String contentId) throws QueueException, ReportException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return tiiReportDao.getReportForReview(contentId).getStudentReport();
     }
 
     @Override
     public String getReviewReportInstructor(String contentId) throws QueueException, ReportException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return tiiReportDao.getReportForReview(contentId).getInstructorReport();
     }
 
     @Override
@@ -214,6 +225,7 @@ public class BackwardContentReviewService implements ContentReviewService {
 
     @Override
     public String getIconUrlforScore(Long score) {
+        //TODO: Provide a set of static icons for every services. Icons shouldn't depend on the implementation.
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -246,9 +258,19 @@ public class BackwardContentReviewService implements ContentReviewService {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Always throws an {@link UnsupportedOperationException}.
+     * </p>
+     *
+     * @deprecated There shouldn't be any reason to call this method. Localisation should be done by the view, not the
+     *             service.
+     */
+    @Deprecated
     @Override
     public String getLocalizedStatusMessage(String messageCode, Locale locale) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -261,11 +283,20 @@ public class BackwardContentReviewService implements ContentReviewService {
     @Override
     public void createAssignment(String siteId, String taskId, Map extraAssnOpts)
             throws SubmissionException, TransientSubmissionException {
-        //TODO: rely on reviewService.executeOnReviewSystem();
-        throw new UnsupportedOperationException();
+        @SuppressWarnings("unchecked")
+        Map<String, Object> parameters = new HashMap<String, Object>(extraAssnOpts);
+        parameters.put(TurnitinReviewSystem.PARAM_TASK_TYPE, TurnitinReviewSystem.PARAM_TASK_CREATE_TYPE);
+        parameters.put(TurnitinReviewSystem.PARAM_TASK_CREATE_SITE_ID, siteId);
+        parameters.put(TurnitinReviewSystem.PARAM_TASK_CREATE_ASSIGNMENT_ID, taskId);
+
+        reviewService.executeOnReviewSystem(parameters);
     }
 
     public void setReviewService(ReviewService reviewService) {
         this.reviewService = reviewService;
+    }
+
+    public void setTiiReportDao(ReportDao tiiReportDao) {
+        this.tiiReportDao = tiiReportDao;
     }
 }

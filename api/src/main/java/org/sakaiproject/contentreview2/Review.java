@@ -43,9 +43,9 @@ public class Review {
      */
     private final String siteId;
     /**
-     * Identifier of the files sent in the submission.
+     * The files sent in the submission.
      */
-    private final Set<String> filesId;
+    private final Set<ReviewItem> files;
     /**
      * Score of the review.
      * <p>
@@ -65,14 +65,14 @@ public class Review {
      * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
      * @param userId       identifier of the user who sent the submission (can be null).
      * @param siteId       identifier of the site in which the assignment is (can be null).
-     * @param filesId      identifiers of the files sent in the submission.
+     * @param files        files sent in the submission.
      */
-    public Review(String submissionId, String assignmentId, String userId, String siteId, Set<String> filesId) {
+    public Review(String submissionId, String assignmentId, String userId, String siteId, Set<ReviewItem> files) {
         this.submissionId = submissionId;
         this.assignmentId = assignmentId;
         this.userId = userId;
         this.siteId = siteId;
-        this.filesId = Collections.unmodifiableSet(new HashSet<String>(filesId));
+        this.files = Collections.unmodifiableSet(new HashSet<ReviewItem>(files));
     }
 
     /**
@@ -81,11 +81,11 @@ public class Review {
      * @param assignmentId identifier of the assignment to which the submission is linked (can be null).
      * @param userId       identifier of the user who sent the submission (can be null).
      * @param siteId       identifier of the site in which the assignment is (can be null).
-     * @param filesId      identifiers of the files sent in the submission.
+     * @param files        files sent in the submission.
      * @see #Review(String, String, String, String, java.util.Set
      */
-    public Review(String assignmentId, String userId, String siteId, Set<String> filesId) {
-        this(UUID.randomUUID().toString(), assignmentId, userId, siteId, filesId);
+    public Review(String assignmentId, String userId, String siteId, Set<ReviewItem> files) {
+        this(UUID.randomUUID().toString(), assignmentId, userId, siteId, files);
     }
 
     public String getSubmissionId() {
@@ -104,8 +104,8 @@ public class Review {
         return siteId;
     }
 
-    public Set<String> getFilesId() {
-        return filesId;
+    public Set<ReviewItem> getFiles() {
+        return files;
     }
 
     public int getScore() {
@@ -144,5 +144,26 @@ public class Review {
          * Something went wrong within the review system. More details can be provided by the implementation.
          */
         FAILED
+    }
+
+    public static class ReviewItem {
+        private final String fileId;
+        private int score;
+
+        public ReviewItem(String fileId) {
+            this.fileId = fileId;
+        }
+
+        public String getFileId() {
+            return fileId;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
     }
 }

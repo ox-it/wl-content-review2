@@ -28,13 +28,13 @@
     </modules>
 
     <scm>
-        <url>https://github.com/ColinHebert/Sakai-ContentReview2</url>
-        <connection>scm:git:git://github.com/ColinHebert/Sakai-ContentReview2.git</connection>
-        <developerConnection>scm:git:git@github.com:ColinHebert/Sakai-ContentReview2.git</developerConnection>
+        <url>https://github.com/ox-it/wl-content-review2</url>
+        <connection>scm:git:git://github.com/ox-it/wl-content-review2.git</connection>
+        <developerConnection>scm:git:git@github.com:ox-it/wl-content-review2.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
-        <url>https://github.com/ColinHebert/Sakai-ContentReview2/issues</url>
+        <url>https://github.com/x-it/wl-content-review2/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
     <ciManagement>
@@ -87,6 +87,7 @@
     <build>
         <plugins>
             <plugin>
+                <!-- Check that we're not using stuff out of Java 7+-->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>animal-sniffer-maven-plugin</artifactId>
                 <version>1.9</version>

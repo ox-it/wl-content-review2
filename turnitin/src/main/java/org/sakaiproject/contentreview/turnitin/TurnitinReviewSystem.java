@@ -31,6 +31,7 @@ import static org.sakaiproject.contentreview.turnitin.mapping.IdMapping.Type.ASS
 import static org.sakaiproject.contentreview.turnitin.mapping.IdMapping.Type.USER;
 
 public class TurnitinReviewSystem implements ReviewSystem {
+    // These are deprecated because passing all the critical information in a map isn't very safe.
     @Deprecated
     public static final String PARAM_TASK_TYPE;
     @Deprecated
